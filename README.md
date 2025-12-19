@@ -22,7 +22,23 @@ This repository contains a GitHub-ready Node.js + Express RESTful API for managi
 
 
 ## Endpoints
-See original assignment for details. Supports filtering, sorting, and priority-based queries.
+## Endpoints
+
+### Tasks
+- `GET /tasks`: Retrieve all tasks.
+    - Query Params:
+        - `completed` (boolean): Filter by completion status.
+        - `sort`: Sort by `createdAt`, `title`, or `priority`.
+        - `order`: `asc` or `desc`.
+        - `priority`: Filter by priority level (`low`, `medium`, `high`).
+- `GET /tasks/:id`: Retrieve a specific task by ID.
+- `POST /tasks`: Create a new task.
+    - Body: `title` (string, required), `description` (string, required), `completed` (boolean), `priority` (low/medium/high).
+- `PUT /tasks/:id`: Update an existing task.
+- `DELETE /tasks/:id`: Delete a task.
+
+### Priority
+- `GET /tasks/priority/:level`: Retrieve tasks by priority level (`low`, `medium`, `high`).
 
 
 ## Notes
