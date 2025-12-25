@@ -22,23 +22,7 @@ This repository contains a GitHub-ready Node.js + Express RESTful API for managi
 
 
 ## Endpoints
-## Endpoints
-
-### Tasks
-- `GET /tasks`: Retrieve all tasks.
-    - Query Params:
-        - `completed` (boolean): Filter by completion status.
-        - `sort`: Sort by `createdAt`, `title`, or `priority`.
-        - `order`: `asc` or `desc`.
-        - `priority`: Filter by priority level (`low`, `medium`, `high`).
-- `GET /tasks/:id`: Retrieve a specific task by ID.
-- `POST /tasks`: Create a new task.
-    - Body: `title` (string, required), `description` (string, required), `completed` (boolean), `priority` (low/medium/high).
-- `PUT /tasks/:id`: Update an existing task.
-- `DELETE /tasks/:id`: Delete a task.
-
-### Priority
-- `GET /tasks/priority/:level`: Retrieve tasks by priority level (`low`, `medium`, `high`).
+See original assignment for details. Supports filtering, sorting, and priority-based queries.
 
 
 ## Notes
@@ -46,18 +30,30 @@ This repository contains a GitHub-ready Node.js + Express RESTful API for managi
 - Tests run in `NODE_ENV=test` and the server does not listen on the port during tests.
 
 
-/* ---------- .github/workflows/nodejs.yml (optional) ---------- */
-# Place this under .github/workflows to enable CI on GitHub Actions
-name: Node CI
-on: [push, pull_request]
-jobs:
-build:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Use Node.js
-uses: actions/setup-node@v4
-with:
-node-version: '18'
-- run: npm ci
-- run: npm test
+#Test Results:
+> task-manager-api@1.0.0 test
+> jest --runInBand
+
+POST /tasks 201 9.908 ms - 197
+GET /tasks/441a7817-75dc-4380-92a1-529ca36fef9f 200 2.041 ms - 197
+PUT /tasks/441a7817-75dc-4380-92a1-529ca36fef9f 200 1.908 ms - 196
+GET /tasks 200 1.113 ms - 198
+DELETE /tasks/441a7817-75dc-4380-92a1-529ca36fef9f 200 0.875 ms - 230
+ PASS  tests/tasks.test.js
+  Task Manager API                                                                                   
+   
+    √ POST /tasks - create task (55 ms)
+    
+    √ GET /tasks/:id - retrieve task (11 ms) 
+    
+    √ PUT /tasks/:id - update task (11 ms)
+    
+    √ GET /tasks - list tasks (9 ms)
+    
+    √ DELETE /tasks/:id - delete task (9 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       5 passed, 5 total
+Snapshots:   0 total
+Time:        1.388 s, estimated 2 s
+Ran all test suites.
